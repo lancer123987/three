@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="robots" content="noindex,nofollow,nosnippet,noarchive,noodp,noydir">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>娜芙蒂蒂</title>
+    <meta name="author" content="">
+    <meta name="copyright" content="">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="distribution" content="Taiwan">
+    <meta name="geo.region" content="tw">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="">
+    <meta property="og:site_name" content="">
+    <meta property="og:image" content="">
+    <meta property="og:description" content="">
+    <meta property="og:type" content="website">
+    <!-- 移除電話號碼在iphone上的樣式 -->
+    <meta name="format-detection" content="telephone=no">
+    <link rel="canonical" href="">
+    <!-- CSS 區塊 start -->
+    <!-- #### 請在此處引用本頁的 CSS 檔案 #### -->
+    <link rel="stylesheet" href="assets/css/common/public.css" data-merge="index">
+    <link rel="stylesheet" href="assets/css/index.css" data-merge="index">
+    <!-- CSS 區塊 end -->
+</head>
+
+<body>
+
+    <!-- main區塊 -->
+    <main>
+        <!-- #### 請在此處編輯本頁內容 #### -->
+        <div id="main" class="main">
+
+        </div>
+    </main>
+    <!-- #### 請在此處引用本頁的 JS 檔案 #### -->
+    <script src="assets/js/lib/jquery-3.5.1.min.js"></script>
+    <!-- <script src="assets/js/plugin/three.min.js"></script> -->
+    <!-- <script src="assets/js/plugin/GLTFLoader.js"></script> -->
+
+    <script async src="assets/js/plugin/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "/mod.artie.com.tw/canvas/nefertiti/assets/js/plugin/three.module.js"
+            }
+        }
+    </script>
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from '/mod.artie.com.tw/canvas/nefertiti/assets/js/plugin/OrbitControls.js';
+        import { GLTFLoader } from '/mod.artie.com.tw/canvas/nefertiti/assets/js/plugin/GLTFLoader.js';
+        jQuery(document).ready(function () {
+            let renderer, scene, camera, controls;
+
+            init();
+            animate();
+
+            function init() {
+
+                // renderer
+                renderer = new THREE.WebGLRenderer();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                document.body.appendChild(renderer.domElement);
+
+                renderer.outputEncoding = THREE.sRGBEncoding;
+
+                // scene
+                scene = new THREE.Scene();
+
+                // camera
+                camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.1, 1000000);
+                camera.position.set(0, 5, 25); //鏡頭角度
+                scene.add(camera);
+
+                // controls
+                controls = new OrbitControls(camera, renderer.domElement);
+                controls.addEventListener('change', render); //user可否控制
+                //controls.dispose();//移除監聽事件
+                controls.autoRotate = true;
+                controls.autoRotateSpeed = 4.0; //旋轉速度
+                controls.update();
+                // controls.minDistance = 10; //最小距離
+                // controls.maxDistance = 50; //最大距離
+                // controls.enablePan = false; //右鍵拖曳
+
+                // 環境光
+                scene.add(new THREE.AmbientLight(0xffffff, 1));
+
+                //方向光
+                let dirLightBottom = new THREE.DirectionalLight( 0xffffff, 0.5 ),
+                    dirLightTop = new THREE.DirectionalLight( 0xffffff, 0.5 ),
+                    dirLightLeft = new THREE.DirectionalLight( 0xffffff, 0.2 ),
+                    dirLightRight = new THREE.DirectionalLight( 0xffffff, 0.2 ),
+                    dirLightFont = new THREE.DirectionalLight( 0xffffff, 0.5 ),
+                    dirLightBehind = new THREE.DirectionalLight( 0xffffff, 0.5 );               
+                dirLightBottom.position.set(0, -5, 0 );
+                dirLightTop.position.set(0, 10, 0 );
+                dirLightLeft.position.set(5, 0, 0 );
+                dirLightRight.position.set(-5, 0, 0 );
+                dirLightFont.position.set(-5, 0, 30 );
+                dirLightBehind.position.set(5, 0, -30 );
+                scene.add( dirLightBottom,dirLightTop,dirLightLeft,dirLightRight,dirLightFont,dirLightBehind );
+                
+                scene.add( new THREE.DirectionalLightHelper( dirLightBottom, 5 ) );
+                scene.add( new THREE.DirectionalLightHelper( dirLightTop, 5 ) );
+                scene.add( new THREE.DirectionalLightHelper( dirLightLeft, 5 ) );
+                scene.add( new THREE.DirectionalLightHelper( dirLightRight, 5 ) );
+                scene.add( new THREE.DirectionalLightHelper( dirLightFont, 5 ) );
+                scene.add( new THREE.DirectionalLightHelper( dirLightBehind, 5 ) );
+
+                // 聚光燈
+                const spotLight = new THREE.SpotLight(0xff0000, 1.5);
+                spotLight.position.set(-10, -5, 0 );
+                //camera.add(spotLight);
+
+                //scene.add( new THREE.SpotLightHelper( spotLight, 5 ) );
+
+
+                // model
+                new GLTFLoader().load('assets/model/airPurifier.glb', function (gltf) {
+                    // gltf.scene.traverse(function (item) {
+                    //     if (item.isMesh) {
+                    //         // glTF currently supports only tangent-space normal maps.
+                    //         // this model has been modified to demonstrate the use of an object-space normal map.
+                    //         item.material.normalMapType = THREE.ObjectSpaceNormalMap;
+
+                    //         // 移除法線
+                    //         item.geometry.deleteAttribute('normal');
+                    //         //紋理渲染雙面
+                    //         item.material.side = THREE.DoubleSide;
+                    //         //尺寸
+                    //         item.scale.multiplyScalar(0.5); 
+                    //         // 置中
+                    //         new THREE.Box3().setFromObject(item).getCenter(item.position).multiplyScalar(-1);
+                    //         //輸出
+                    //         scene.add(item);
+                    //     }
+                    // });
+                    scene.add( gltf.scene );
+
+                    gltf.animations; // Array<THREE.AnimationClip>
+                    gltf.scene; // THREE.Group
+                    gltf.scenes; // Array<THREE.Group>
+                    gltf.cameras; // Array<THREE.Camera>
+                    gltf.asset; // Object
+                    //https://threejs.org/docs/#examples/zh/loaders/GLTFLoader
+                    render();
+                });
+                window.addEventListener('resize', onWindowResize);
+            }
+
+            function onWindowResize() {
+                renderer.setSize(window.innerWidth, window.innerHeight);
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                render();
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                controls.update();
+                renderer.render(scene, camera);
+            }
+
+            function render() {
+                renderer.render(scene, camera);
+            }
+        });
+    </script>
+    <!-- JS 區塊 end -->
+</body>
+
+</html>

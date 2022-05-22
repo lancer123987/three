@@ -1,0 +1,148 @@
+@charset "UTF-8";
+
+/**頁碼**/
+.c-page {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    margin: 40px auto;
+}
+
+.c-page__count {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+}
+
+.c-page__count a {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    border-radius: 50%;
+    font-size: 17px;
+    color: #3f3f3f;
+    line-height: 1;
+    transition: color .4s ease-in-out, background-color .4s ease-in-out;
+    overflow: hidden;
+}
+
+.c-page__count a:hover,
+.c-page__count a.active {
+    color: #fff;
+    background: #111;
+}
+
+.c-page__prev,
+.c-page__next {
+    color: #3f3f3f;
+    font-size: 16px;
+    margin: 0 0 0 60px;
+    transition: opacity .4s ease-in-out;
+}
+
+.c-page__prev {
+    margin: 0 60px 0 0;
+}
+
+.c-page__prev:hover,
+.c-page__next:hover {
+    opacity: .7;
+}
+
+/**頁碼上下則文字**/
+.c-page__prev::after,
+.c-page__next::before {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 16px;
+    color: #3f3f3f;
+}
+
+.c-page__prev::after {
+    content: '上一頁';
+    margin: 0 0 0 15px;
+}
+
+.c-page__next::before {
+    content: '下一頁';
+    margin: 0 15px 0 0;
+}
+
+/**頁碼箭頭**/
+.c-page__prev::before,
+.c-page__next::after {
+    content: '';
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 15px;
+    height: 30px;
+    background: url(../../images/common/icon_arrow_next_thin_black.svg) center no-repeat;
+    background-size: contain;
+}
+
+.c-page__prev::before {
+    transform: scaleX(-1);
+}
+
+.c-page__prev.disable,
+.c-page__next.disable {
+    opacity: .4;
+    pointer-events: none;
+}
+
+/**頁碼內文頁樣式**/
+.c-page-detail {
+    justify-content: space-between;
+}
+
+.c-page-detail .c-page__count {
+    display: none;
+}
+
+.c-page-detail .c-page__prev::after {
+    content: '上一則';
+    margin: 0 0 0 15px;
+}
+
+.c-page-detail .c-page__next::before {
+    content: '下一則';
+    margin: 0 15px 0 0;
+}
+
+@media screen and (max-width: 991px) {}
+
+@media screen and (max-width: 767px) {}
+
+@media screen and (max-width: 575px) {
+
+    /**頁碼**/
+    .c-page {
+        margin: 40px auto;
+        justify-content: space-between;
+    }
+
+    .c-page__prev {
+        margin: 0 30px 0 0;
+    }
+
+    .c-page__next {
+        margin: 0 0 0 30px;
+    }
+}
+
+
+
+/****IOS樣式****/
+@supports (-webkit-touch-callout: none) {}

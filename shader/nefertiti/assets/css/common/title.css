@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+.c-title01 {
+    display: block;
+    width: 100%;
+}
+
+@media screen and (max-width: 991px) {}
+
+@media screen and (max-width: 767px) {}
+
+@media screen and (max-width: 575px) {}
+
+
+
+/****IOS樣式****/
+@supports (-webkit-touch-callout: none) {}

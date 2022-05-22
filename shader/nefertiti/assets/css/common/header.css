@@ -1,0 +1,18 @@
+@charset "UTF-8";
+/****header****/
+header {
+    position: fixed;
+    width: 100%;
+}
+
+#mainmenuCheck:checked {}
+@media screen and (max-width: 991px) {}
+
+@media screen and (max-width: 767px) {}
+
+@media screen and (max-width: 575px) {}
+
+
+
+/****IOS樣式****/
+@supports (-webkit-touch-callout: none) {}

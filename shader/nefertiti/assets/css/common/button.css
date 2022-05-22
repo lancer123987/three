@@ -1,0 +1,72 @@
+@charset "UTF-8";
+
+/**按鈕樣式**/
+[class^="c-bt"] {
+    display: inline-flex;
+    align-items: center;
+    align-content: center;
+    justify-items: center;
+    justify-content: center;
+    margin: 0;
+    font-size: 15px;
+    font-family: 'NotoSansTC';
+    background: #1b1b1b;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    outline: none;
+    overflow: hidden;
+}
+
+[class^="c-bt"] input[type="submit"],
+[class^="c-bt"] input[type="reset"],
+[class^="c-bt"] button,
+[class^="c-bt"] span {
+    display: block;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+[class^="c-bt"] input[type="submit"],
+[class^="c-bt"] button {
+    display: block;
+    border: none;
+    background: none;
+}
+
+[class^="c-bt"] input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+}
+
+[class^="c-bt"] button {
+    width: 100%;
+    text-align: center;
+}
+
+/**more**樣式**/
+[class^="c-bt"][class*="-more"] {
+    padding: 15.5px 20px;
+}
+
+@media screen and (max-width: 991px) {}
+
+@media screen and (max-width: 767px) {}
+
+@media screen and (max-width: 575px) {}
+
+
+
+/****IOS樣式****/
+@supports (-webkit-touch-callout: none) {}

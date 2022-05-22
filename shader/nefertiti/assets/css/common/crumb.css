@@ -1,0 +1,39 @@
+@charset "UTF-8";
+
+/****導行列****/
+.crumb {
+    display: block;
+    width: 100%;
+}
+
+.crumb ol {
+    display: block;
+    width: 100%;
+}
+
+.crumb ol li {
+    display: inline;
+}
+
+.crumb ol li a {
+    font-size: 18px;
+    font-family: 'Microsoft JhengHei', 'PingFang', sans-serif;
+}
+
+/****針對圖片顯示階層處理樣式****/
+.crumb__pic span {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+@media screen and (max-width: 991px) {}
+
+@media screen and (max-width: 767px) {}
+
+@media screen and (max-width: 575px) {}
+
+
+
+/****IOS樣式****/
+@supports (-webkit-touch-callout: none) {}

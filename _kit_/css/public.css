@@ -1,0 +1,195 @@
+@charset "UTF-8";
+
+/****font****/
+@font-face {
+    font-family: 'Calibri';
+    font-display: swap;
+    src: url('') format('TrueType');
+}
+
+* {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    font-weight: normal;
+}
+
+html,
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Microsoft JhengHei', 'PingFang', sans-serif;
+    overflow: hidden;
+}
+
+ul,
+ol {
+    margin: 0;
+    list-style-type: none;
+}
+
+a {
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+    font-family: inherit;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+address {
+    font-style: normal;
+}
+
+img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1;
+}
+
+button {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+button:focus-visible {
+    outline: none;
+}
+
+fieldset {
+    border: none;
+}
+
+select:focus,
+input:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+iframe {
+    width: 100%;
+    border: none;
+}
+
+.slick-track * {
+    outline: none;
+}
+
+.slick-list,
+.slick-track {
+    min-width: 100%;
+}
+
+/**IOS樣式去除**/
+select,
+input,
+textarea {
+    border-radius: 0;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+select {}
+
+input[type="password"]::-ms-reveal,
+input[type="password"]::-ms-clear,
+input[type="password"]::-o-clear {
+    display: none;
+}
+
+input[type="submit"] {
+    cursor: pointer;
+}
+
+/**IE箭頭去除**/
+select::-ms-expand {
+    display: none;
+}
+
+/****卷軸樣式****/
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    width: 6px;
+}
+
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb {
+    background: #a40000;
+}
+
+/****錨點****/
+.c-anchor {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 0;
+    height: 0;
+    border: none;
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+}
+
+/****共用樣式****/
+.c-toggleBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    padding: 0;
+    border: none;
+    background: none;
+    opacity: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/****animation****/
+@keyframes XXXX {
+    0% {}
+
+    100% {}
+}
+
+/****RWD start****/
+@media screen and (max-width:1199px) {}
+
+@media screen and (max-width: 991px) {
+
+    /****錨點****/
+    .c-anchor {
+        top: 0;
+    }
+}
+
+@media screen and (max-width: 767px) {}
+
+@media screen and (max-width: 575px) {
+
+    /****錨點****/
+    .c-anchor {
+        top: 0;
+    }
+}
+
+/****IOS樣式****/
+@supports (-webkit-touch-callout: none) {
+    input::placeholder {
+        line-height: 2;
+    }
+}
